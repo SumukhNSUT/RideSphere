@@ -1,0 +1,19 @@
+{
+  "name": "ride-booking",
+  "version": "1.0.0",
+  "description": "Ride booking platform with user/driver login and ride listings",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "Your Name",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "connect-mongo": "^5.1.0",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "express-session": "^1.18.1",
+    "mongoose": "^8.16.3"
+  }
+}

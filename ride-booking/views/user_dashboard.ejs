@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>User Dashboard</title>
+		<link rel="stylesheet" href="/style.css" />
+	</head>
+
+	<body>
+		<h2>Available Rides</h2>
+		<div id="rides-container">
+			<% if (rides.length > 0) { %> <% rides.forEach(r => { %>
+			<div class="ride-box" id="ride-<%= r._id %>">
+				<div class="ride-detail"><strong>From:</strong> <%= r.from %></div>
+				<div class="ride-detail"><strong>To:</strong> <%= r.to %></div>
+				<div class="ride-detail"><strong>Cost:</strong> ₹<%= r.cost %></div>
+				<div class="ride-detail">
+					<strong>Driver:</strong> <%= r.driver.username %>
+				</div>
+				<button onclick="bookRide('<%= r._id %>')">Book</button>
+			</div>
+			<% }) %> <% } else { %>
+			<p>No rides available at the moment.</p>
+			<% } %>
+		</div>
+		<a href="/logout">Logout</a>
+
+		<script>
+			function bookRide(rideId) {
+				fetch(`/rides/book/${rideId}`, {
+					method: "POST",
+				})
+					.then((res) => {
+						if (res.ok) {
+							alert("Ride booked successfully!");
+							document.getElementById("ride-" + rideId).remove();
+						} else {
+							alert("Booking failed.");
+						}
+					})
+					.catch((err) => {
+						console.error(err);
+						alert("An error occurred.");
+					});
+			}
+		</script>
+	</body>
+</html>
